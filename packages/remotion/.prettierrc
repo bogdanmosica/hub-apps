@@ -1,0 +1,15 @@
+{
+    "bracketSpacing": true,
+    "overrides": [
+        {
+            "files": [
+                "*.yml"
+            ],
+            "options": {
+                "singleQuote": false
+            }
+        }
+    ],
+    "singleQuote": true,
+    "useTabs": true
+}

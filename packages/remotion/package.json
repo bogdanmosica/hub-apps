@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "@remotion/bundler": "4.0.200",
+    "@remotion/cli": "4.0.200",
+    "@remotion/zod-types": "4.0.200",
+    "d3": "^7.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.200",
+    "zod": "3.22.3"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config": "4.0.200",
+    "@remotion/tailwind": "4.0.200",
+    "@repo/eslint-config": "*",
+    "@repo/tailwind-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/d3": "^7.4.3",
+    "@types/react": "^18.0.26",
+    "@types/web": "^0.0.143",
+    "prettier": "^3.2.5",
+    "typescript": "latest"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "name": "@hub/remotion",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "remotion": "remotion studio",
+    "render": "remotion render"
+  },
+  "type": "module"
+}

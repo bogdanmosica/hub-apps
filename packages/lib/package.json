@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "mdast-util-toc": "^7.1.0",
+    "remark": "^15.0.1",
+    "unist-util-visit": "^5.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "name": "@hub/lib",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "version": "0.0.0"
+}

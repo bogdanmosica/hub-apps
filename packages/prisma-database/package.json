@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@prisma/client": "^5.17.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.17.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "name": "@prisma/database",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate"
+  },
+  "version": "0.0.0"
+}

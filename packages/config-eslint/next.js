@@ -19,6 +19,7 @@ module.exports = {
       "@vercel/style-guide/eslint/browser",
       "@vercel/style-guide/eslint/react",
       "@vercel/style-guide/eslint/next",
+      "@vercel/style-guide/prettier",
     ].map(require.resolve),
     "turbo",
   ],
@@ -43,5 +44,6 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "no-unused-vars": "error",
   },
 };
