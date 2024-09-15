@@ -4,7 +4,13 @@
 		"jsx": "react",
 		"outDir": "dist",
 		"rootDir": "src",
-		"downlevelIteration": true
+		"downlevelIteration": true,
+		"paths": {
+			"@/animations/*": ["./animations/*"],
+			"@/compositions/*": ["./compositions/*"],
+			"@/interpolations/*": ["./interpolations/*"],
+			"@/components/*": ["./components/*"]
+		}
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
