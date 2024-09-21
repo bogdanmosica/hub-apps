@@ -7,8 +7,6 @@ import { UserAuthFormFallback } from "@hub/shadcn-ui/fallbacks/user-auth-form-fa
 import { UserAuthForm } from "@hub/shadcn-ui/forms/user-auth-form";
 
 export const LoginForm = async () => {
-  // const session = await auth();
-  // console.log({ session });
   return (
     <Suspense fallback={<UserAuthFormFallback />}>
       <UserAuthForm signIn={authenticateUser} />
