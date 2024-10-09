@@ -16,6 +16,8 @@ import { BarPlotDatasetTransition } from './compositions/BarRacerTriesD3/BarChar
 import { BarPlotDataSet } from './compositions/BarRacerTriesD3/BarChartRacing/components/BarPlotDataSet';
 import { BarChartRaceComposition } from './compositions/BarRacerTriesD3/ChartBarRacer';
 import useLoadData from './compositions/BarRacerTriesD3/BarChartRace/hooks/useLoadData';
+import { AllAnimationsComposition } from './compositions/AllAnimations';
+import { flattenAnimations } from './constants/FlattenAnimations';
 
 const baseProps = {
 	durationInFrames: 60 * 10,
@@ -28,13 +30,13 @@ export const RemotionRoot: React.FC = () => {
 	const { dataByYear, dataList: data } = useLoadData();
 	const fps = 30;
 
-  // Extract years and sort them
-  const years = Array.from(new Set(data.map((d) => d.date.getFullYear()))).sort(
-    (a, b) => a - b
-  );
+	// Extract years and sort them
+	const years = Array.from(new Set(data.map((d) => d.date.getFullYear()))).sort(
+		(a, b) => a - b,
+	);
 
-  const framesPerYear = fps * 1; // 1 second per year
-  baseProps.durationInFrames = (years.length - 1) * framesPerYear;
+	const framesPerYear = fps * 1; // 1 second per year
+	baseProps.durationInFrames = (years.length - 1) * framesPerYear;
 
 	return (
 		<>
@@ -82,6 +84,14 @@ export const RemotionRoot: React.FC = () => {
 				{...baseProps}
 				fps={60}
 				durationInFrames={20 * 60}
+				defaultProps={{ data, topN: 10 }}
+			/>
+			<Composition
+				id="all-animations"
+				component={AllAnimationsComposition as any}
+				{...baseProps}
+				fps={30}
+				durationInFrames={flattenAnimations.length * 100}
 				defaultProps={{ data, topN: 10 }}
 			/>
 		</>

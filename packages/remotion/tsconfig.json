@@ -9,7 +9,8 @@
 			"@/animations/*": ["./animations/*"],
 			"@/compositions/*": ["./compositions/*"],
 			"@/interpolations/*": ["./interpolations/*"],
-			"@/components/*": ["./components/*"]
+			"@/components/*": ["./components/*"],
+			"@/constants/*": ["./constants/*"]
 		}
 	},
 	"include": ["src"],

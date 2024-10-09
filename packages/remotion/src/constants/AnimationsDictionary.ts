@@ -249,4 +249,4 @@ export const AnimationsDictionary = {
 		zoomOutRight,
 		zoomOutUp,
 	},
-};
+} as const;

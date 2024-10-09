@@ -10,6 +10,7 @@ import { cn } from '@hub/utils';
 import { Analytics } from '@hub/shadcn-ui/analytics';
 import { TailwindIndicator } from '@hub/shadcn-ui/tailwind-indicator';
 import { ThemeProvider } from '@hub/shadcn-ui/theme-provider';
+import Providers from './providers';
 //import MainStoreContextProvider from '../contexts/main-store';
 
 const fontSans = FontSans({
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          {children}
+          <Providers>{children}</Providers>
           <Analytics />
           <Toaster />
           <TailwindIndicator />

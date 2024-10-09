@@ -1,7 +1,7 @@
 //'use server';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import { DashboardCompositionListLoadingFallback } from '@hub/shadcn-ui/fallbacks/dashboard-fallback';
+import { CardsListLoadingFallback } from '@hub/shadcn-ui/fallbacks/cards-fallback';
 import { DashboardHeader } from '@hub/shadcn-ui/header';
 import { DashboardShell } from '@hub/shadcn-ui/shell';
 import { ProtectedRoute } from '@hub/shadcn-ui/protected-route';
@@ -24,8 +24,8 @@ export default async function DashboardPage() {
           heading='Compositions'
           text='Create and manage compositions.'
         />
-        <Suspense fallback={<DashboardCompositionListLoadingFallback />}>
-          <DashboardCompositionListLoadingFallback />
+        <Suspense fallback={<CardsListLoadingFallback />}>
+          <CardsListLoadingFallback />
         </Suspense>
       </DashboardShell>
     </ProtectedRoute>

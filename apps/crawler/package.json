@@ -4,7 +4,10 @@
     "@hub/shadcn-ui": "*",
     "@hub/validations": "*",
     "@prisma/client": "^5.17.0",
-    "@prisma/database": "*"
+    "@prisma/database": "*",
+    "@tanstack/react-query-devtools": "^5.59.0",
+    "cheerio": "^1.0.0",
+    "puppeteer": "^23.5.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",

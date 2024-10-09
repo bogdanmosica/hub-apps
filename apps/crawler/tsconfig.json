@@ -8,9 +8,11 @@
       "@/assets/*": ["./assets/*"],
       "@/app/*": ["./app/*"],
       "@/actions/*": ["./actions/*"],
-      "@/auth": ["./auth/index.ts"]
+      "@/auth": ["./auth/index.ts"],
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/middleware.ts.doc", "src/middleware.ts.doc", "src/middleware.ts.doc", "src/middleware.ts.doc"],
   "exclude": ["node_modules"]
 }

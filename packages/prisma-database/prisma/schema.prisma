@@ -58,9 +58,10 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
-  accounts Account[]
-  sessions Session[]
-  Post     Post[]
+  accounts    Account[]
+  sessions    Session[]
+  Post        Post[]
+  crawledData CrawledData[]
 
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
@@ -92,4 +93,16 @@ model Post {
   author User @relation(fields: [authorId], references: [id])
 
   @@map(name: "posts")
+}
+
+model CrawledData {
+  id             Int      @id @default(autoincrement())
+  url            String
+  parsedData     Json
+  selectors      Json
+  compositionIds Int[]
+  updatedAt      DateTime @default(now())
+  createdAt      DateTime @default(now())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
 }

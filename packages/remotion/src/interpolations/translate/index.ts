@@ -75,7 +75,7 @@ export const shakeXTranslateX = (progress: number) =>
 export const shakeYTranslateY = (progress: number) =>
 	interpolate(
 		progress,
-		[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], // Keyframe percentages (0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100%)
+		[0, 0.1, 0.2, 0.3, 0.45, 0.62, 0.7, 0.8, 0.9, 1], // Keyframe percentages (0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100%)
 		[0, -10, 10, -10, 10, -10, 10, -10, 10, 0], // translateY values in px
 		{
 			easing: Easing.inOut(Easing.ease),
