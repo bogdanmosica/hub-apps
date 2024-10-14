@@ -5,6 +5,7 @@ type GetCrawlWebsiteArgs = {
   url: string;
   selectors: { name: string; selector: string }[];
 };
+type CrawlWebsiteResult = { [key: string]: string }[];
 export async function getCrawlWebsite({
   url = '',
   selectors = [],
@@ -19,37 +20,63 @@ export async function getCrawlWebsite({
   const content = await page.content();
   const $ = cheerio.load(content);
 
-  // Find the common container that wraps all elements you're interested in
-  const containers = $(selectors[0].selector).parent(); // Get the parent of the first selector
+  // Crawl based on selectors independently and group by index
+  // Reduce each selector to capture elements based on the dynamic selector names
+  const parsedData = selectors.reduce(
+    (acc: CrawlWebsiteResult, { name, selector }) => {
+      const elements = $(selector);
 
-  // Parse data for each container and ensure it's grouped by selector names
-  const parsedData = containers
-    .toArray()
-    .map((container) => {
-      const parsedItem: { [key: string]: string } = {};
+      if (elements.length === 0) {
+        console.warn(`Selector "${selector}" returned no elements.`);
+      }
 
-      selectors.forEach(({ name, selector }) => {
-        const element = $(container).find(selector);
+      // For each element, capture text nodes only and skip irrelevant tags
+      elements.each((index, element) => {
+        let textContent = '';
+        $(element)
+          .contents()
+          .each((_, node) => {
+            // Check if the node is text and its parent is not a script/style tag
+            if (
+              node.type === 'text' &&
+              !$(node).closest('script, style, img, meta').length
+            ) {
+              textContent += $(node).text().replace(/\s+/g, ' ').trim();
+            }
+          });
 
-        if (element.length) {
-          parsedItem[name] = element
-            .contents()
-            .filter(function () {
-              return this.type === 'text';
-            })
-            .text()
-            .replace(/\s+/g, ' ')
-            .trim()
-            .replace(/[^\S\r\n]+/g, ' '); // Clean up whitespace
+        if (!textContent) {
+          console.warn(
+            `No visible text found for selector "${selector}" at index ${index}`
+          );
+        } else {
+          console.log(
+            `Extracted text for "${name}" at index ${index}: "${textContent}"`
+          );
+        }
+
+        // Initialize the object at this index if it doesn't exist
+        if (!acc[index]) {
+          acc[index] = {};
+        }
+
+        // Only add non-empty content
+        if (textContent) {
+          acc[index][name] = textContent;
         }
       });
 
-      // Only add parsed item if it has data for all selectors
-      return Object.keys(parsedItem).length > 0 ? parsedItem : null;
-    })
-    .filter(Boolean); // Ensure no invalid entries are included
+      return acc;
+    },
+    []
+  );
+
+  // Filter out entries that don't have all required selectors populated
+  const result = parsedData.filter(
+    (item) => selectors.every(({ name }) => item[name]) // Ensure all selector names have values
+  );
 
   await browser.close();
 
-  return parsedData;
+  return result;
 }

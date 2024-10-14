@@ -1,0 +1,54 @@
+import db from '@prisma/database';
+
+export type {{properCase entityName}}Dto = {
+{{{generateType fieldsObject}}}
+}
+
+export async function getUser{{properCase entityName}}s(userId: string) {
+  return await db.{{camelCase entityName}}.findMany({
+    where: { userId },
+  });
+}
+
+export async function create{{properCase entityName}}(userId: string, data: {{properCase entityName}}Dto) {
+  return await db.{{camelCase entityName}}.create({
+    data: {
+      userId,
+      ...data,
+    },
+  });
+}
+
+export async function get{{properCase entityName}}ById(userId: string, {{camelCase entityName}}Id: string) {
+  return await db.{{camelCase entityName}}.findFirst({
+    where: {
+      id: {{camelCase entityName}}Id,
+      userId,
+    },
+  });
+}
+
+export async function update{{properCase entityName}}(
+  userId: string,
+  {{camelCase entityName}}Id: string,
+  data: {{properCase entityName}}Dto
+) {
+  const result = await db.{{camelCase entityName}}.updateMany({
+    where: {
+      id: {{camelCase entityName}}Id,
+      userId,
+    },
+    data,
+  });
+  return result.count;
+}
+
+export async function delete{{properCase entityName}}(userId: string, {{camelCase entityName}}Id: string) {
+  const result = await db.{{camelCase entityName}}.deleteMany({
+    where: {
+      id: {{camelCase entityName}}Id,
+      userId,
+    },
+  });
+  return result.count;
+}

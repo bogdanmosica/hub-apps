@@ -43,6 +43,11 @@ export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
  * 
  */
 export type CrawledData = $Result.DefaultSelection<Prisma.$CrawledDataPayload>
+/**
+ * Model Composition
+ * 
+ */
+export type Composition = $Result.DefaultSelection<Prisma.$CompositionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -226,6 +231,16 @@ export class PrismaClient<
     * ```
     */
   get crawledData(): Prisma.CrawledDataDelegate<ExtArgs>;
+
+  /**
+   * `prisma.composition`: Exposes CRUD operations for the **Composition** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Compositions
+    * const compositions = await prisma.composition.findMany()
+    * ```
+    */
+  get composition(): Prisma.CompositionDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -672,7 +687,8 @@ export namespace Prisma {
     User: 'User',
     VerificationToken: 'VerificationToken',
     Post: 'Post',
-    CrawledData: 'CrawledData'
+    CrawledData: 'CrawledData',
+    Composition: 'Composition'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -688,7 +704,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "account" | "session" | "user" | "verificationToken" | "post" | "crawledData"
+      modelProps: "account" | "session" | "user" | "verificationToken" | "post" | "crawledData" | "composition"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1112,6 +1128,76 @@ export namespace Prisma {
           }
         }
       }
+      Composition: {
+        payload: Prisma.$CompositionPayload<ExtArgs>
+        fields: Prisma.CompositionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompositionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompositionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          findFirst: {
+            args: Prisma.CompositionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompositionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          findMany: {
+            args: Prisma.CompositionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>[]
+          }
+          create: {
+            args: Prisma.CompositionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          createMany: {
+            args: Prisma.CompositionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompositionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>[]
+          }
+          delete: {
+            args: Prisma.CompositionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          update: {
+            args: Prisma.CompositionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          deleteMany: {
+            args: Prisma.CompositionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompositionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CompositionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompositionPayload>
+          }
+          aggregate: {
+            args: Prisma.CompositionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComposition>
+          }
+          groupBy: {
+            args: Prisma.CompositionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompositionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompositionCountArgs<ExtArgs>
+            result: $Utils.Optional<CompositionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1277,6 +1363,7 @@ export namespace Prisma {
     sessions: number
     Post: number
     crawledData: number
+    Composition: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1284,6 +1371,7 @@ export namespace Prisma {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     Post?: boolean | UserCountOutputTypeCountPostArgs
     crawledData?: boolean | UserCountOutputTypeCountCrawledDataArgs
+    Composition?: boolean | UserCountOutputTypeCountCompositionArgs
   }
 
   // Custom InputTypes
@@ -1323,6 +1411,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCrawledDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CrawledDataWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCompositionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompositionWhereInput
   }
 
 
@@ -3566,6 +3661,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Post?: boolean | User$PostArgs<ExtArgs>
     crawledData?: boolean | User$crawledDataArgs<ExtArgs>
+    Composition?: boolean | User$CompositionArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3602,6 +3698,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     Post?: boolean | User$PostArgs<ExtArgs>
     crawledData?: boolean | User$crawledDataArgs<ExtArgs>
+    Composition?: boolean | User$CompositionArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3613,6 +3710,7 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       Post: Prisma.$PostPayload<ExtArgs>[]
       crawledData: Prisma.$CrawledDataPayload<ExtArgs>[]
+      Composition: Prisma.$CompositionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3994,6 +4092,7 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany"> | Null>
     Post<T extends User$PostArgs<ExtArgs> = {}>(args?: Subset<T, User$PostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany"> | Null>
     crawledData<T extends User$crawledDataArgs<ExtArgs> = {}>(args?: Subset<T, User$crawledDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CrawledDataPayload<ExtArgs>, T, "findMany"> | Null>
+    Composition<T extends User$CompositionArgs<ExtArgs> = {}>(args?: Subset<T, User$CompositionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4425,6 +4524,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CrawledDataScalarFieldEnum | CrawledDataScalarFieldEnum[]
+  }
+
+  /**
+   * User.Composition
+   */
+  export type User$CompositionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    where?: CompositionWhereInput
+    orderBy?: CompositionOrderByWithRelationInput | CompositionOrderByWithRelationInput[]
+    cursor?: CompositionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CompositionScalarFieldEnum | CompositionScalarFieldEnum[]
   }
 
   /**
@@ -7245,6 +7364,1009 @@ export namespace Prisma {
 
 
   /**
+   * Model Composition
+   */
+
+  export type AggregateComposition = {
+    _count: CompositionCountAggregateOutputType | null
+    _avg: CompositionAvgAggregateOutputType | null
+    _sum: CompositionSumAggregateOutputType | null
+    _min: CompositionMinAggregateOutputType | null
+    _max: CompositionMaxAggregateOutputType | null
+  }
+
+  export type CompositionAvgAggregateOutputType = {
+    volume: number | null
+  }
+
+  export type CompositionSumAggregateOutputType = {
+    volume: number | null
+  }
+
+  export type CompositionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    videoUrl: string | null
+    musicUrl: string | null
+    orientation: string | null
+    animation: string | null
+    volume: number | null
+  }
+
+  export type CompositionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    videoUrl: string | null
+    musicUrl: string | null
+    orientation: string | null
+    animation: string | null
+    volume: number | null
+  }
+
+  export type CompositionCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    videoUrl: number
+    musicUrl: number
+    orientation: number
+    animation: number
+    volume: number
+    _all: number
+  }
+
+
+  export type CompositionAvgAggregateInputType = {
+    volume?: true
+  }
+
+  export type CompositionSumAggregateInputType = {
+    volume?: true
+  }
+
+  export type CompositionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    videoUrl?: true
+    musicUrl?: true
+    orientation?: true
+    animation?: true
+    volume?: true
+  }
+
+  export type CompositionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    videoUrl?: true
+    musicUrl?: true
+    orientation?: true
+    animation?: true
+    volume?: true
+  }
+
+  export type CompositionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    videoUrl?: true
+    musicUrl?: true
+    orientation?: true
+    animation?: true
+    volume?: true
+    _all?: true
+  }
+
+  export type CompositionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Composition to aggregate.
+     */
+    where?: CompositionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Compositions to fetch.
+     */
+    orderBy?: CompositionOrderByWithRelationInput | CompositionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompositionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Compositions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Compositions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Compositions
+    **/
+    _count?: true | CompositionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CompositionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CompositionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompositionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompositionMaxAggregateInputType
+  }
+
+  export type GetCompositionAggregateType<T extends CompositionAggregateArgs> = {
+        [P in keyof T & keyof AggregateComposition]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComposition[P]>
+      : GetScalarType<T[P], AggregateComposition[P]>
+  }
+
+
+
+
+  export type CompositionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompositionWhereInput
+    orderBy?: CompositionOrderByWithAggregationInput | CompositionOrderByWithAggregationInput[]
+    by: CompositionScalarFieldEnum[] | CompositionScalarFieldEnum
+    having?: CompositionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompositionCountAggregateInputType | true
+    _avg?: CompositionAvgAggregateInputType
+    _sum?: CompositionSumAggregateInputType
+    _min?: CompositionMinAggregateInputType
+    _max?: CompositionMaxAggregateInputType
+  }
+
+  export type CompositionGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation: string
+    animation: string
+    volume: number
+    _count: CompositionCountAggregateOutputType | null
+    _avg: CompositionAvgAggregateOutputType | null
+    _sum: CompositionSumAggregateOutputType | null
+    _min: CompositionMinAggregateOutputType | null
+    _max: CompositionMaxAggregateOutputType | null
+  }
+
+  type GetCompositionGroupByPayload<T extends CompositionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompositionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompositionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompositionGroupByOutputType[P]>
+            : GetScalarType<T[P], CompositionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompositionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    videoUrl?: boolean
+    musicUrl?: boolean
+    orientation?: boolean
+    animation?: boolean
+    volume?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["composition"]>
+
+  export type CompositionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    videoUrl?: boolean
+    musicUrl?: boolean
+    orientation?: boolean
+    animation?: boolean
+    volume?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["composition"]>
+
+  export type CompositionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    videoUrl?: boolean
+    musicUrl?: boolean
+    orientation?: boolean
+    animation?: boolean
+    volume?: boolean
+  }
+
+  export type CompositionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CompositionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CompositionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Composition"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      videoUrl: string
+      musicUrl: string
+      orientation: string
+      animation: string
+      volume: number
+    }, ExtArgs["result"]["composition"]>
+    composites: {}
+  }
+
+  type CompositionGetPayload<S extends boolean | null | undefined | CompositionDefaultArgs> = $Result.GetResult<Prisma.$CompositionPayload, S>
+
+  type CompositionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CompositionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CompositionCountAggregateInputType | true
+    }
+
+  export interface CompositionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Composition'], meta: { name: 'Composition' } }
+    /**
+     * Find zero or one Composition that matches the filter.
+     * @param {CompositionFindUniqueArgs} args - Arguments to find a Composition
+     * @example
+     * // Get one Composition
+     * const composition = await prisma.composition.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompositionFindUniqueArgs>(args: SelectSubset<T, CompositionFindUniqueArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Composition that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CompositionFindUniqueOrThrowArgs} args - Arguments to find a Composition
+     * @example
+     * // Get one Composition
+     * const composition = await prisma.composition.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompositionFindUniqueOrThrowArgs>(args: SelectSubset<T, CompositionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Composition that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionFindFirstArgs} args - Arguments to find a Composition
+     * @example
+     * // Get one Composition
+     * const composition = await prisma.composition.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompositionFindFirstArgs>(args?: SelectSubset<T, CompositionFindFirstArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Composition that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionFindFirstOrThrowArgs} args - Arguments to find a Composition
+     * @example
+     * // Get one Composition
+     * const composition = await prisma.composition.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompositionFindFirstOrThrowArgs>(args?: SelectSubset<T, CompositionFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Compositions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Compositions
+     * const compositions = await prisma.composition.findMany()
+     * 
+     * // Get first 10 Compositions
+     * const compositions = await prisma.composition.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const compositionWithIdOnly = await prisma.composition.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CompositionFindManyArgs>(args?: SelectSubset<T, CompositionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Composition.
+     * @param {CompositionCreateArgs} args - Arguments to create a Composition.
+     * @example
+     * // Create one Composition
+     * const Composition = await prisma.composition.create({
+     *   data: {
+     *     // ... data to create a Composition
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompositionCreateArgs>(args: SelectSubset<T, CompositionCreateArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Compositions.
+     * @param {CompositionCreateManyArgs} args - Arguments to create many Compositions.
+     * @example
+     * // Create many Compositions
+     * const composition = await prisma.composition.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompositionCreateManyArgs>(args?: SelectSubset<T, CompositionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Compositions and returns the data saved in the database.
+     * @param {CompositionCreateManyAndReturnArgs} args - Arguments to create many Compositions.
+     * @example
+     * // Create many Compositions
+     * const composition = await prisma.composition.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Compositions and only return the `id`
+     * const compositionWithIdOnly = await prisma.composition.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompositionCreateManyAndReturnArgs>(args?: SelectSubset<T, CompositionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Composition.
+     * @param {CompositionDeleteArgs} args - Arguments to delete one Composition.
+     * @example
+     * // Delete one Composition
+     * const Composition = await prisma.composition.delete({
+     *   where: {
+     *     // ... filter to delete one Composition
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompositionDeleteArgs>(args: SelectSubset<T, CompositionDeleteArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Composition.
+     * @param {CompositionUpdateArgs} args - Arguments to update one Composition.
+     * @example
+     * // Update one Composition
+     * const composition = await prisma.composition.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompositionUpdateArgs>(args: SelectSubset<T, CompositionUpdateArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Compositions.
+     * @param {CompositionDeleteManyArgs} args - Arguments to filter Compositions to delete.
+     * @example
+     * // Delete a few Compositions
+     * const { count } = await prisma.composition.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompositionDeleteManyArgs>(args?: SelectSubset<T, CompositionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Compositions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Compositions
+     * const composition = await prisma.composition.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompositionUpdateManyArgs>(args: SelectSubset<T, CompositionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Composition.
+     * @param {CompositionUpsertArgs} args - Arguments to update or create a Composition.
+     * @example
+     * // Update or create a Composition
+     * const composition = await prisma.composition.upsert({
+     *   create: {
+     *     // ... data to create a Composition
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Composition we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompositionUpsertArgs>(args: SelectSubset<T, CompositionUpsertArgs<ExtArgs>>): Prisma__CompositionClient<$Result.GetResult<Prisma.$CompositionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Compositions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionCountArgs} args - Arguments to filter Compositions to count.
+     * @example
+     * // Count the number of Compositions
+     * const count = await prisma.composition.count({
+     *   where: {
+     *     // ... the filter for the Compositions we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompositionCountArgs>(
+      args?: Subset<T, CompositionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompositionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Composition.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompositionAggregateArgs>(args: Subset<T, CompositionAggregateArgs>): Prisma.PrismaPromise<GetCompositionAggregateType<T>>
+
+    /**
+     * Group by Composition.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompositionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompositionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompositionGroupByArgs['orderBy'] }
+        : { orderBy?: CompositionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompositionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompositionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Composition model
+   */
+  readonly fields: CompositionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Composition.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompositionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Composition model
+   */ 
+  interface CompositionFieldRefs {
+    readonly id: FieldRef<"Composition", 'String'>
+    readonly userId: FieldRef<"Composition", 'String'>
+    readonly name: FieldRef<"Composition", 'String'>
+    readonly videoUrl: FieldRef<"Composition", 'String'>
+    readonly musicUrl: FieldRef<"Composition", 'String'>
+    readonly orientation: FieldRef<"Composition", 'String'>
+    readonly animation: FieldRef<"Composition", 'String'>
+    readonly volume: FieldRef<"Composition", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Composition findUnique
+   */
+  export type CompositionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter, which Composition to fetch.
+     */
+    where: CompositionWhereUniqueInput
+  }
+
+  /**
+   * Composition findUniqueOrThrow
+   */
+  export type CompositionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter, which Composition to fetch.
+     */
+    where: CompositionWhereUniqueInput
+  }
+
+  /**
+   * Composition findFirst
+   */
+  export type CompositionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter, which Composition to fetch.
+     */
+    where?: CompositionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Compositions to fetch.
+     */
+    orderBy?: CompositionOrderByWithRelationInput | CompositionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Compositions.
+     */
+    cursor?: CompositionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Compositions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Compositions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Compositions.
+     */
+    distinct?: CompositionScalarFieldEnum | CompositionScalarFieldEnum[]
+  }
+
+  /**
+   * Composition findFirstOrThrow
+   */
+  export type CompositionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter, which Composition to fetch.
+     */
+    where?: CompositionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Compositions to fetch.
+     */
+    orderBy?: CompositionOrderByWithRelationInput | CompositionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Compositions.
+     */
+    cursor?: CompositionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Compositions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Compositions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Compositions.
+     */
+    distinct?: CompositionScalarFieldEnum | CompositionScalarFieldEnum[]
+  }
+
+  /**
+   * Composition findMany
+   */
+  export type CompositionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter, which Compositions to fetch.
+     */
+    where?: CompositionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Compositions to fetch.
+     */
+    orderBy?: CompositionOrderByWithRelationInput | CompositionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Compositions.
+     */
+    cursor?: CompositionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Compositions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Compositions.
+     */
+    skip?: number
+    distinct?: CompositionScalarFieldEnum | CompositionScalarFieldEnum[]
+  }
+
+  /**
+   * Composition create
+   */
+  export type CompositionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Composition.
+     */
+    data: XOR<CompositionCreateInput, CompositionUncheckedCreateInput>
+  }
+
+  /**
+   * Composition createMany
+   */
+  export type CompositionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Compositions.
+     */
+    data: CompositionCreateManyInput | CompositionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Composition createManyAndReturn
+   */
+  export type CompositionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Compositions.
+     */
+    data: CompositionCreateManyInput | CompositionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Composition update
+   */
+  export type CompositionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Composition.
+     */
+    data: XOR<CompositionUpdateInput, CompositionUncheckedUpdateInput>
+    /**
+     * Choose, which Composition to update.
+     */
+    where: CompositionWhereUniqueInput
+  }
+
+  /**
+   * Composition updateMany
+   */
+  export type CompositionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Compositions.
+     */
+    data: XOR<CompositionUpdateManyMutationInput, CompositionUncheckedUpdateManyInput>
+    /**
+     * Filter which Compositions to update
+     */
+    where?: CompositionWhereInput
+  }
+
+  /**
+   * Composition upsert
+   */
+  export type CompositionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Composition to update in case it exists.
+     */
+    where: CompositionWhereUniqueInput
+    /**
+     * In case the Composition found by the `where` argument doesn't exist, create a new Composition with this data.
+     */
+    create: XOR<CompositionCreateInput, CompositionUncheckedCreateInput>
+    /**
+     * In case the Composition was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompositionUpdateInput, CompositionUncheckedUpdateInput>
+  }
+
+  /**
+   * Composition delete
+   */
+  export type CompositionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+    /**
+     * Filter which Composition to delete.
+     */
+    where: CompositionWhereUniqueInput
+  }
+
+  /**
+   * Composition deleteMany
+   */
+  export type CompositionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Compositions to delete
+     */
+    where?: CompositionWhereInput
+  }
+
+  /**
+   * Composition without action
+   */
+  export type CompositionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Composition
+     */
+    select?: CompositionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompositionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7341,6 +8463,20 @@ export namespace Prisma {
   };
 
   export type CrawledDataScalarFieldEnum = (typeof CrawledDataScalarFieldEnum)[keyof typeof CrawledDataScalarFieldEnum]
+
+
+  export const CompositionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    videoUrl: 'videoUrl',
+    musicUrl: 'musicUrl',
+    orientation: 'orientation',
+    animation: 'animation',
+    volume: 'volume'
+  };
+
+  export type CompositionScalarFieldEnum = (typeof CompositionScalarFieldEnum)[keyof typeof CompositionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7651,6 +8787,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     Post?: PostListRelationFilter
     crawledData?: CrawledDataListRelationFilter
+    Composition?: CompositionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7669,6 +8806,7 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     Post?: PostOrderByRelationAggregateInput
     crawledData?: CrawledDataOrderByRelationAggregateInput
+    Composition?: CompositionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7690,6 +8828,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     Post?: PostListRelationFilter
     crawledData?: CrawledDataListRelationFilter
+    Composition?: CompositionListRelationFilter
   }, "id" | "email" | "stripeCustomerId" | "stripeSubscriptionId">
 
   export type UserOrderByWithAggregationInput = {
@@ -7906,6 +9045,78 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"CrawledData"> | string
   }
 
+  export type CompositionWhereInput = {
+    AND?: CompositionWhereInput | CompositionWhereInput[]
+    OR?: CompositionWhereInput[]
+    NOT?: CompositionWhereInput | CompositionWhereInput[]
+    id?: StringFilter<"Composition"> | string
+    userId?: StringFilter<"Composition"> | string
+    name?: StringFilter<"Composition"> | string
+    videoUrl?: StringFilter<"Composition"> | string
+    musicUrl?: StringFilter<"Composition"> | string
+    orientation?: StringFilter<"Composition"> | string
+    animation?: StringFilter<"Composition"> | string
+    volume?: IntFilter<"Composition"> | number
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type CompositionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    videoUrl?: SortOrder
+    musicUrl?: SortOrder
+    orientation?: SortOrder
+    animation?: SortOrder
+    volume?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type CompositionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CompositionWhereInput | CompositionWhereInput[]
+    OR?: CompositionWhereInput[]
+    NOT?: CompositionWhereInput | CompositionWhereInput[]
+    userId?: StringFilter<"Composition"> | string
+    name?: StringFilter<"Composition"> | string
+    videoUrl?: StringFilter<"Composition"> | string
+    musicUrl?: StringFilter<"Composition"> | string
+    orientation?: StringFilter<"Composition"> | string
+    animation?: StringFilter<"Composition"> | string
+    volume?: IntFilter<"Composition"> | number
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type CompositionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    videoUrl?: SortOrder
+    musicUrl?: SortOrder
+    orientation?: SortOrder
+    animation?: SortOrder
+    volume?: SortOrder
+    _count?: CompositionCountOrderByAggregateInput
+    _avg?: CompositionAvgOrderByAggregateInput
+    _max?: CompositionMaxOrderByAggregateInput
+    _min?: CompositionMinOrderByAggregateInput
+    _sum?: CompositionSumOrderByAggregateInput
+  }
+
+  export type CompositionScalarWhereWithAggregatesInput = {
+    AND?: CompositionScalarWhereWithAggregatesInput | CompositionScalarWhereWithAggregatesInput[]
+    OR?: CompositionScalarWhereWithAggregatesInput[]
+    NOT?: CompositionScalarWhereWithAggregatesInput | CompositionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Composition"> | string
+    userId?: StringWithAggregatesFilter<"Composition"> | string
+    name?: StringWithAggregatesFilter<"Composition"> | string
+    videoUrl?: StringWithAggregatesFilter<"Composition"> | string
+    musicUrl?: StringWithAggregatesFilter<"Composition"> | string
+    orientation?: StringWithAggregatesFilter<"Composition"> | string
+    animation?: StringWithAggregatesFilter<"Composition"> | string
+    volume?: IntWithAggregatesFilter<"Composition"> | number
+  }
+
   export type AccountCreateInput = {
     id?: string
     type: string
@@ -8102,6 +9313,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     Post?: PostCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataCreateNestedManyWithoutUserInput
+    Composition?: CompositionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8120,6 +9332,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataUncheckedCreateNestedManyWithoutUserInput
+    Composition?: CompositionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8138,6 +9351,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Post?: PostUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8156,6 +9370,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUncheckedUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8382,6 +9597,82 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompositionCreateInput = {
+    id?: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
+    user: UserCreateNestedOneWithoutCompositionInput
+  }
+
+  export type CompositionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
+  }
+
+  export type CompositionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutCompositionNestedInput
+  }
+
+  export type CompositionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompositionCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
+  }
+
+  export type CompositionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompositionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -8638,6 +9929,12 @@ export namespace Prisma {
     none?: CrawledDataWhereInput
   }
 
+  export type CompositionListRelationFilter = {
+    every?: CompositionWhereInput
+    some?: CompositionWhereInput
+    none?: CompositionWhereInput
+  }
+
   export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -8651,6 +9948,10 @@ export namespace Prisma {
   }
 
   export type CrawledDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CompositionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8940,6 +10241,47 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type CompositionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    videoUrl?: SortOrder
+    musicUrl?: SortOrder
+    orientation?: SortOrder
+    animation?: SortOrder
+    volume?: SortOrder
+  }
+
+  export type CompositionAvgOrderByAggregateInput = {
+    volume?: SortOrder
+  }
+
+  export type CompositionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    videoUrl?: SortOrder
+    musicUrl?: SortOrder
+    orientation?: SortOrder
+    animation?: SortOrder
+    volume?: SortOrder
+  }
+
+  export type CompositionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    videoUrl?: SortOrder
+    musicUrl?: SortOrder
+    orientation?: SortOrder
+    animation?: SortOrder
+    volume?: SortOrder
+  }
+
+  export type CompositionSumOrderByAggregateInput = {
+    volume?: SortOrder
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -9016,6 +10358,13 @@ export namespace Prisma {
     connect?: CrawledDataWhereUniqueInput | CrawledDataWhereUniqueInput[]
   }
 
+  export type CompositionCreateNestedManyWithoutUserInput = {
+    create?: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput> | CompositionCreateWithoutUserInput[] | CompositionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CompositionCreateOrConnectWithoutUserInput | CompositionCreateOrConnectWithoutUserInput[]
+    createMany?: CompositionCreateManyUserInputEnvelope
+    connect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -9042,6 +10391,13 @@ export namespace Prisma {
     connectOrCreate?: CrawledDataCreateOrConnectWithoutUserInput | CrawledDataCreateOrConnectWithoutUserInput[]
     createMany?: CrawledDataCreateManyUserInputEnvelope
     connect?: CrawledDataWhereUniqueInput | CrawledDataWhereUniqueInput[]
+  }
+
+  export type CompositionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput> | CompositionCreateWithoutUserInput[] | CompositionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CompositionCreateOrConnectWithoutUserInput | CompositionCreateOrConnectWithoutUserInput[]
+    createMany?: CompositionCreateManyUserInputEnvelope
+    connect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -9104,6 +10460,20 @@ export namespace Prisma {
     deleteMany?: CrawledDataScalarWhereInput | CrawledDataScalarWhereInput[]
   }
 
+  export type CompositionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput> | CompositionCreateWithoutUserInput[] | CompositionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CompositionCreateOrConnectWithoutUserInput | CompositionCreateOrConnectWithoutUserInput[]
+    upsert?: CompositionUpsertWithWhereUniqueWithoutUserInput | CompositionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CompositionCreateManyUserInputEnvelope
+    set?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    disconnect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    delete?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    connect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    update?: CompositionUpdateWithWhereUniqueWithoutUserInput | CompositionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CompositionUpdateManyWithWhereWithoutUserInput | CompositionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CompositionScalarWhereInput | CompositionScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -9160,6 +10530,20 @@ export namespace Prisma {
     deleteMany?: CrawledDataScalarWhereInput | CrawledDataScalarWhereInput[]
   }
 
+  export type CompositionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput> | CompositionCreateWithoutUserInput[] | CompositionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CompositionCreateOrConnectWithoutUserInput | CompositionCreateOrConnectWithoutUserInput[]
+    upsert?: CompositionUpsertWithWhereUniqueWithoutUserInput | CompositionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CompositionCreateManyUserInputEnvelope
+    set?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    disconnect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    delete?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    connect?: CompositionWhereUniqueInput | CompositionWhereUniqueInput[]
+    update?: CompositionUpdateWithWhereUniqueWithoutUserInput | CompositionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CompositionUpdateManyWithWhereWithoutUserInput | CompositionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CompositionScalarWhereInput | CompositionScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutPostInput = {
     create?: XOR<UserCreateWithoutPostInput, UserUncheckedCreateWithoutPostInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostInput
@@ -9207,6 +10591,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserCreateNestedOneWithoutCompositionInput = {
+    create?: XOR<UserCreateWithoutCompositionInput, UserUncheckedCreateWithoutCompositionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCompositionInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCompositionNestedInput = {
+    create?: XOR<UserCreateWithoutCompositionInput, UserUncheckedCreateWithoutCompositionInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCompositionInput
+    upsert?: UserUpsertWithoutCompositionInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCompositionInput, UserUpdateWithoutCompositionInput>, UserUncheckedUpdateWithoutCompositionInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9469,6 +10867,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     Post?: PostCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataCreateNestedManyWithoutUserInput
+    Composition?: CompositionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -9486,6 +10885,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataUncheckedCreateNestedManyWithoutUserInput
+    Composition?: CompositionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -9519,6 +10919,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Post?: PostUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -9536,6 +10937,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUncheckedUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -9553,6 +10955,7 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     Post?: PostCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataCreateNestedManyWithoutUserInput
+    Composition?: CompositionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -9570,6 +10973,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
     crawledData?: CrawledDataUncheckedCreateNestedManyWithoutUserInput
+    Composition?: CompositionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -9603,6 +11007,7 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Post?: PostUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -9620,6 +11025,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     crawledData?: CrawledDataUncheckedUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -9747,6 +11153,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CompositionCreateWithoutUserInput = {
+    id?: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
+  }
+
+  export type CompositionUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
+  }
+
+  export type CompositionCreateOrConnectWithoutUserInput = {
+    where: CompositionWhereUniqueInput
+    create: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput>
+  }
+
+  export type CompositionCreateManyUserInputEnvelope = {
+    data: CompositionCreateManyUserInput | CompositionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -9870,6 +11306,36 @@ export namespace Prisma {
     userId?: StringFilter<"CrawledData"> | string
   }
 
+  export type CompositionUpsertWithWhereUniqueWithoutUserInput = {
+    where: CompositionWhereUniqueInput
+    update: XOR<CompositionUpdateWithoutUserInput, CompositionUncheckedUpdateWithoutUserInput>
+    create: XOR<CompositionCreateWithoutUserInput, CompositionUncheckedCreateWithoutUserInput>
+  }
+
+  export type CompositionUpdateWithWhereUniqueWithoutUserInput = {
+    where: CompositionWhereUniqueInput
+    data: XOR<CompositionUpdateWithoutUserInput, CompositionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CompositionUpdateManyWithWhereWithoutUserInput = {
+    where: CompositionScalarWhereInput
+    data: XOR<CompositionUpdateManyMutationInput, CompositionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CompositionScalarWhereInput = {
+    AND?: CompositionScalarWhereInput | CompositionScalarWhereInput[]
+    OR?: CompositionScalarWhereInput[]
+    NOT?: CompositionScalarWhereInput | CompositionScalarWhereInput[]
+    id?: StringFilter<"Composition"> | string
+    userId?: StringFilter<"Composition"> | string
+    name?: StringFilter<"Composition"> | string
+    videoUrl?: StringFilter<"Composition"> | string
+    musicUrl?: StringFilter<"Composition"> | string
+    orientation?: StringFilter<"Composition"> | string
+    animation?: StringFilter<"Composition"> | string
+    volume?: IntFilter<"Composition"> | number
+  }
+
   export type UserCreateWithoutPostInput = {
     id?: string
     name?: string | null
@@ -9885,6 +11351,7 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     crawledData?: CrawledDataCreateNestedManyWithoutUserInput
+    Composition?: CompositionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostInput = {
@@ -9902,6 +11369,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     crawledData?: CrawledDataUncheckedCreateNestedManyWithoutUserInput
+    Composition?: CompositionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostInput = {
@@ -9935,6 +11403,7 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     crawledData?: CrawledDataUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostInput = {
@@ -9952,6 +11421,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     crawledData?: CrawledDataUncheckedUpdateManyWithoutUserNestedInput
+    Composition?: CompositionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCrawledDataInput = {
@@ -9969,6 +11439,7 @@ export namespace Prisma {
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     Post?: PostCreateNestedManyWithoutAuthorInput
+    Composition?: CompositionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCrawledDataInput = {
@@ -9986,6 +11457,7 @@ export namespace Prisma {
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    Composition?: CompositionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCrawledDataInput = {
@@ -10019,6 +11491,7 @@ export namespace Prisma {
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     Post?: PostUpdateManyWithoutAuthorNestedInput
+    Composition?: CompositionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCrawledDataInput = {
@@ -10036,6 +11509,95 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    Composition?: CompositionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCompositionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stripeCustomerId?: string | null
+    stripeSubscriptionId?: string | null
+    stripePriceId?: string | null
+    stripeCurrentPeriodEnd?: Date | string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Post?: PostCreateNestedManyWithoutAuthorInput
+    crawledData?: CrawledDataCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCompositionInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stripeCustomerId?: string | null
+    stripeSubscriptionId?: string | null
+    stripePriceId?: string | null
+    stripeCurrentPeriodEnd?: Date | string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Post?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    crawledData?: CrawledDataUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCompositionInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCompositionInput, UserUncheckedCreateWithoutCompositionInput>
+  }
+
+  export type UserUpsertWithoutCompositionInput = {
+    update: XOR<UserUpdateWithoutCompositionInput, UserUncheckedUpdateWithoutCompositionInput>
+    create: XOR<UserCreateWithoutCompositionInput, UserUncheckedCreateWithoutCompositionInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCompositionInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCompositionInput, UserUncheckedUpdateWithoutCompositionInput>
+  }
+
+  export type UserUpdateWithoutCompositionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePriceId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCurrentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Post?: PostUpdateManyWithoutAuthorNestedInput
+    crawledData?: CrawledDataUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCompositionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSubscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePriceId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeCurrentPeriodEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Post?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    crawledData?: CrawledDataUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -10079,6 +11641,16 @@ export namespace Prisma {
     compositionIds?: CrawledDataCreatecompositionIdsInput | number[]
     updatedAt?: Date | string
     createdAt?: Date | string
+  }
+
+  export type CompositionCreateManyUserInput = {
+    id?: string
+    name: string
+    videoUrl: string
+    musicUrl: string
+    orientation?: string
+    animation?: string
+    volume?: number
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -10209,6 +11781,36 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CompositionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompositionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompositionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    musicUrl?: StringFieldUpdateOperationsInput | string
+    orientation?: StringFieldUpdateOperationsInput | string
+    animation?: StringFieldUpdateOperationsInput | string
+    volume?: IntFieldUpdateOperationsInput | number
+  }
+
 
 
   /**
@@ -10242,6 +11844,10 @@ export namespace Prisma {
      * @deprecated Use CrawledDataDefaultArgs instead
      */
     export type CrawledDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CrawledDataDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CompositionDefaultArgs instead
+     */
+    export type CompositionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CompositionDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

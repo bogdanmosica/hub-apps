@@ -1,0 +1,47 @@
+import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
+import { getUser{{properCase entityName}}s, create{{properCase entityName}}, {{properCase entityName}}Dto } from '@/actions/{{kebabCase entityName}}';
+
+export const GET = auth(async (req) => {
+  const session = req.auth;
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = session.user?.id as string;
+
+  try {
+    const {{camelCase entityName}}s = await getUser{{properCase entityName}}s(userId);
+
+    return NextResponse.json({{camelCase entityName}}s, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: 'Error fetching {{camelCase entityName}}s', error: error.message },
+      { status: 500 }
+    );
+  }
+});
+
+export const POST = auth(async (req) => {
+  const session = req.auth;
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = session.user?.id as string;
+
+  try {
+    const data: {{properCase entityName}}Dto = await req.json();
+
+    const new{{properCase entityName}} = await create{{properCase entityName}}(userId, data);
+
+    return NextResponse.json(new{{properCase entityName}}, { status: 201 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: 'Error creating {{camelCase entityName}}', error: error.message },
+      { status: 500 }
+    );
+  }
+});

@@ -189,6 +189,17 @@ exports.Prisma.CrawledDataScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.CompositionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  videoUrl: 'videoUrl',
+  musicUrl: 'musicUrl',
+  orientation: 'orientation',
+  animation: 'animation',
+  volume: 'volume'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -226,7 +237,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   VerificationToken: 'VerificationToken',
   Post: 'Post',
-  CrawledData: 'CrawledData'
+  CrawledData: 'CrawledData',
+  Composition: 'Composition'
 };
 
 /**

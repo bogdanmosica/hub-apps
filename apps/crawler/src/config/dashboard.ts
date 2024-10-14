@@ -3,8 +3,12 @@ import { DashboardConfig } from '@hub/types';
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
-      title: 'Compositions',
+      title: 'Dashboard',
       href: '/dashboard',
+    },
+    {
+      title: 'Compositions',
+      href: '/compositions',
     },
     {
       title: 'Crawlers',

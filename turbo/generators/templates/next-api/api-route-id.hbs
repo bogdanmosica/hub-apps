@@ -1,0 +1,88 @@
+import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
+import {
+  get{{properCase entityName}}ById,
+  update{{properCase entityName}},
+  delete{{properCase entityName}},
+  {{properCase entityName}}Dto,
+} from '@/actions/{{kebabCase entityName}}';
+
+export const GET = auth(async (req, { params }) => {
+  const session = req.auth;
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = session.user?.id as string;
+  const {{camelCase entityName}}Id = params?.id as string;
+
+  try {
+    const {{camelCase entityName}} = await get{{properCase entityName}}ById(userId, {{camelCase entityName}}Id);
+
+    if (!{{camelCase entityName}}) {
+      return NextResponse.json({ message: '{{properCase entityName}} not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({{camelCase entityName}}, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: 'Error fetching {{camelCase entityName}}', error: error.message },
+      { status: 500 }
+    );
+  }
+});
+
+export const PUT = auth(async (req, { params }) => {
+  const session = req.auth;
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = session.user?.id as string;
+  const {{camelCase entityName}}Id = params?.id as string;
+
+  try {
+    const data: {{properCase entityName}}Dto = await req.json();
+
+    const updatedCount = await update{{properCase entityName}}(userId, {{camelCase entityName}}Id, data);
+
+    if (updatedCount === 0) {
+      return NextResponse.json({ message: '{{properCase entityName}} not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: '{{properCase entityName}} updated successfully' }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: 'Error updating {{camelCase entityName}}', error: error.message },
+      { status: 500 }
+    );
+  }
+});
+
+export const DELETE = auth(async (req, { params }) => {
+  const session = req.auth;
+
+  if (!session) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = session.user?.id as string;
+  const {{camelCase entityName}}Id = params.id as string;
+
+  try {
+    const deletedCount = await delete{{properCase entityName}}(userId, {{camelCase entityName}}Id);
+
+    if (deletedCount === 0) {
+      return NextResponse.json({ message: '{{properCase entityName}} not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: '{{properCase entityName}} deleted successfully' }, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { message: 'Error deleting {{camelCase entityName}}', error: error.message },
+      { status: 500 }
+    );
+  }
+});

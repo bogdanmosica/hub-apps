@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import { CardsListLoadingFallback } from '@hub/shadcn-ui/fallbacks/cards-fallback';
 import { DashboardHeader } from '@hub/shadcn-ui/header';
 import { DashboardShell } from '@hub/shadcn-ui/shell';
 import { ProtectedRoute } from '@hub/shadcn-ui/protected-route';
-import DashboardComposition from '@/components/dashboard/dashboard-composition';
+import LeftMenu from '@/components/dashboard/left-menu';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -20,8 +19,8 @@ export default async function DashboardPage() {
           heading='Compositions'
           text='Create and manage compositions.'
         />
-        <Suspense fallback={<CardsListLoadingFallback />}>
-          {/* <DashboardComposition crawler={{}} /> */}
+        <Suspense fallback={'Loading'}>
+          <LeftMenu />
         </Suspense>
       </DashboardShell>
     </ProtectedRoute>

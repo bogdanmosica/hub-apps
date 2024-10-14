@@ -3,7 +3,6 @@ import db from '@prisma/database';
 import { auth } from '@/auth'; // Import your NextAuth v5 authentication
 import { CrawlDataResponseDto, SelectorRequestDto } from 'types/crawl-dto';
 import { getCrawlWebsite } from '@/actions/crawl-website';
-import { getCurrentUser } from '@/lib/auth';
 import { getUserCrawls } from '@/actions/crawls/get-user-crawls';
 
 export const GET = auth(async (req) => {

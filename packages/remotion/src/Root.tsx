@@ -18,6 +18,7 @@ import { BarChartRaceComposition } from './compositions/BarRacerTriesD3/ChartBar
 import useLoadData from './compositions/BarRacerTriesD3/BarChartRace/hooks/useLoadData';
 import { AllAnimationsComposition } from './compositions/AllAnimations';
 import { flattenAnimations } from './constants/FlattenAnimations';
+import { AbstractComposition } from './compositions/AbstractComposition';
 
 const baseProps = {
 	durationInFrames: 60 * 10,
@@ -37,6 +38,17 @@ export const RemotionRoot: React.FC = () => {
 
 	const framesPerYear = fps * 1; // 1 second per year
 	baseProps.durationInFrames = (years.length - 1) * framesPerYear;
+
+	const texts = ['Welcome', 'To', 'Remotion'];
+	const videoUrl =
+		'https://videos.pexels.com/video-files/15932548/15932548-hd_1080_1920_30fps.mp4';
+	const audioUrl =
+		'https://cdn.pixabay.com/audio/2024/09/16/audio_a10608d6cd.mp3';
+	const isMobile = false;
+	let orientation = 'portrait';
+
+	const textDuration = fps * 2;
+	const totalDuration = texts.length * textDuration;
 
 	return (
 		<>
@@ -61,6 +73,22 @@ export const RemotionRoot: React.FC = () => {
 				fps={60}
 				durationInFrames={24 * 60}
 				defaultProps={defaultMyCompProps}
+			/>
+			<Composition
+				id="abstract-composition"
+				component={AbstractComposition as any}
+				{...baseProps}
+				durationInFrames={totalDuration}
+				fps={fps}
+				width={orientation === 'portrait' ? 720 : 1280}
+				height={orientation === 'portrait' ? 1280 : 720}
+				defaultProps={{
+					texts,
+					videoUrl,
+					audioUrl,
+					isMobile,
+					orientation,
+				}}
 			/>
 			<Composition
 				id="bar-chart-race"

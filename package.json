@@ -14,6 +14,7 @@
     "dev:crawler": "next dev apps/crawler --turbo --port 3000",
     "build:crawler": "next build apps/crawler",
     "generate:boilerplate": "turbo gen next-boilerplate",
+    "generate:next-api": "turbo gen next-api-route",
     "generate:workspace": "turbo gen workspace",
     "clean-monorepo": "del node_modules package-lock.json"
   },

@@ -22,7 +22,7 @@ import { Slider } from '@hub/shadcn-ui/ui/slider';
 import { Select } from '@hub/shadcn-ui/ui/select';
 import { GenericDataItem, GenericDataList } from 'types/crawl-dto';
 
-type ParsedEntity = {
+export type ParsedEntity = {
   isSelected: boolean;
   name: string; // Add the name property to ParsedEntity
 } & GenericDataItem;

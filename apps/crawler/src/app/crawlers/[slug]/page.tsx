@@ -19,8 +19,8 @@ const defaultData: CrawlDataResponseDto = {
   id: 0,
   url: '',
   selectors: [],
-  createdAt: "",
-  updatedAt: "",
+  createdAt: '',
+  updatedAt: '',
   userId: '',
   parsedData: [{ isSelected: false, name: '' }],
   labels: [],
@@ -33,9 +33,9 @@ export default async function CrawlersIdPage({ params }: GenericPageParams) {
     params?.slug === 'new-crawler'
       ? defaultData
       : await getUserCrawlById({
-        userId: session?.user?.id ?? '',
-        id: Number(params?.slug) ?? -1,
-      });
+          userId: session?.user?.id ?? '',
+          id: Number(params?.slug) ?? -1,
+        });
 
   return (
     <ProtectedRoute
