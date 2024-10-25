@@ -12,13 +12,13 @@ import {
 import 'tailwindcss/tailwind.css';
 import { cn } from '@hub/utils';
 
-interface AbstractCompositionProps {
+export type AbstractCompositionProps = {
 	texts: string[];
 	videoUrl: string;
 	audioUrl: string;
 	isMobile: boolean;
 	orientation: 'portrait' | 'landscape';
-}
+};
 
 export const AbstractComposition: React.FC<AbstractCompositionProps> = ({
 	texts,

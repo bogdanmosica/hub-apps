@@ -1,6 +1,6 @@
 import { ScrollArea } from '@hub/shadcn-ui/ui/scroll-area';
 import { GenericDataList } from 'types/crawl-dto';
-import { ParsedEntity } from '../dashboard/crawling-table';
+import { ParsedEntity } from './crawling-table';
 import { Card } from '@hub/shadcn-ui/ui/card';
 import { CardContent } from '@hub/shadcn-ui/ui/card';
 

@@ -16,12 +16,9 @@ export default async function DashboardPage() {
     <ProtectedRoute redirectPath='dashboard' isUserAuthenticated={true}>
       <DashboardShell>
         <DashboardHeader
-          heading='Compositions'
+          heading='Dashboard'
           text='Create and manage compositions.'
         />
-        <Suspense fallback={'Loading'}>
-          <LeftMenu />
-        </Suspense>
       </DashboardShell>
     </ProtectedRoute>
   );

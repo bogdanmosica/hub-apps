@@ -36,7 +36,7 @@ type FormValues = z.infer<typeof FormSchema>;
 
 type CrawlFormProps = {
   data: GenericDataItem;
-  onData: (data: any) => void;
+  onData: (data: FormValues) => void;
 };
 const CrawlForm = ({ data, onData }: CrawlFormProps) => {
   const form = useForm<FormValues>({
@@ -62,9 +62,8 @@ const CrawlForm = ({ data, onData }: CrawlFormProps) => {
         body: JSON.stringify(data),
       });
 
-      const result: CrawlDataResponseDto = await response.json();
+      const result: FormValues = await response.json();
       if (response.ok) {
-        console.log({ result });
         onData(result);
         toast({
           title: 'Crawling successful!',

@@ -41,7 +41,6 @@ const CrawlingTable = ({ parsedData = [] }: ParsedDataProps) => {
     voice: '',
     rate: 1,
   });
-  console.log({ data, parsedData });
 
   useEffect(() => {
     setData(parsedData);

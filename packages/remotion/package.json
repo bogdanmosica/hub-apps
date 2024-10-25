@@ -24,7 +24,8 @@
     "typescript": "latest"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./abstract-composition": "./src/compositions/AbstractComposition/index.tsx"
   },
   "name": "@hub/remotion",
   "scripts": {

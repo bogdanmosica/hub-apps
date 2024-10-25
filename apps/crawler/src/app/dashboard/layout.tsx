@@ -2,6 +2,8 @@ import { MainNav } from '@hub/shadcn-ui/main-nav';
 import { dashboardConfig } from '../../config/dashboard';
 import { UserAccountNav } from '@hub/shadcn-ui/user-account-nav';
 import { auth } from '@/auth';
+import { Suspense } from 'react';
+import LeftMenu from '@/components/dashboard/left-menu';
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
@@ -20,7 +22,9 @@ export default async function DashboardLayout({
         </div>
       </header>
       <div className='xl:w-10/12 m-auto grid flex-1 gap-12 md:grid-cols-[1fr]'>
+        
         <main className='flex w-full flex-1 flex-col overflow-hidden'>
+        
           {children}
         </main>
       </div>

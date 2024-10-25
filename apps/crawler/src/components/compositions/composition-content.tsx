@@ -11,29 +11,29 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@hub/shadcn-ui/ui/drawer';
-import CrawlerForm from '../crawler-form';
 import { useState } from 'react';
-import CrawlingTable from './crawling-table';
-import { CrawlDataResponseDto } from 'types/crawl-dto';
+import { CompositionDataResponseDto } from 'types/compositions';
+import CompositionForm from './composition-form';
+import CompositionPlayer from './composition-player';
 
-const defaultData: CrawlDataResponseDto = {
-  id: 0,
-  url: '',
-  selectors: [],
-  createdAt: `${new Date()}`,
-  updatedAt: `${new Date()}`,
+const defaultData: CompositionDataResponseDto = {
+  name: '',
+  id: '',
   userId: '',
-  parsedData: [{ isSelected: false, name: '' }],
-  labels: [],
+  videoUrl: '',
+  musicUrl: '',
+  orientation: 'landscape' as 'landscape' | 'portrait', // or 'portrait'
+  animation: 'none', // or 'fade', 'slide', 'zoom'
+  volume: 0,
 };
 
-type CrawlersContentProps = {
-  crawlData?: CrawlDataResponseDto;
+type CompositionContentProps = {
+  composition?: CompositionDataResponseDto;
 };
 
-const CrawlersContent = ({ crawlData }: CrawlersContentProps) => {
-  const [data, setData] = useState<CrawlDataResponseDto>(
-    crawlData ?? defaultData
+const CompositionContent = ({ composition }: CompositionContentProps) => {
+  const [data, setData] = useState<CompositionDataResponseDto>(
+    composition ?? defaultData
   );
 
   return (
@@ -54,7 +54,10 @@ const CrawlersContent = ({ crawlData }: CrawlersContentProps) => {
                 Configure the settings for the model and messages.
               </DrawerDescription>
             </DrawerHeader>
-            <CrawlerForm data={data} onData={(data) => setData(data)} />
+            <CompositionForm
+              data={data}
+              onData={(updatedData) => setData({ ...data, ...updatedData })}
+            />
           </DrawerContent>
         </Drawer>
         <Button variant='outline' size='sm' className='ml-auto gap-1.5 text-sm'>
@@ -67,22 +70,34 @@ const CrawlersContent = ({ crawlData }: CrawlersContentProps) => {
           className='relative hidden flex-col items-start gap-8 md:flex'
           x-chunk='dashboard-03-chunk-0'
         >
-          <CrawlerForm data={data} onData={(data) => setData(data)} />
+          <CompositionForm
+            data={data}
+            onData={(updatedData) => setData({ ...data, ...updatedData })}
+          />
         </div>
         <div className='relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2'>
           <Badge variant='outline' className='absolute right-3 top-3'>
             Output
           </Badge>
           <div className='flex-1' />
-          <CrawlingTable
-            parsedData={data.parsedData}
-            // onSelectionChange={(selectedData: any) =>
-            //   console.log({ selectedData })
-            // }
+          <CompositionPlayer
+            composition={{
+              ...data,
+              audioUrl: composition?.musicUrl ?? '',
+              isMobile: false,
+              texts: ['some text', 'some toehera'],
+              animation: composition?.animation ?? 'none',
+              volume: composition?.volume ?? 100,
+              id: composition?.id ?? '',
+              userId: composition?.userId ?? '',
+              musicUrl: composition?.musicUrl ?? '',
+              name: composition?.name ?? '',
+              videoUrl: composition?.videoUrl ?? '',
+            }}
           />
         </div>
       </main>
     </div>
   );
 };
-export default CrawlersContent;
+export default CompositionContent;

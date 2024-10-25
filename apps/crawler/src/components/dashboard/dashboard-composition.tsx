@@ -1,9 +1,5 @@
-import { auth } from '@/auth';
-import CrawlersContent from './crawlers-content';
-import { getUserCrawlById } from '@/actions/crawls/get-user-crawl-by-id';
-import { GenericPageParams } from 'types/generic-page-params';
+import CrawlersContent from '../crawlers/crawlers-content';
 import { CrawlDataResponseDto } from 'types/crawl-dto';
-import LeftMenu from './left-menu';
 
 type DashboardCompositionProps = {
   crawler: CrawlDataResponseDto;
@@ -12,8 +8,7 @@ type DashboardCompositionProps = {
 const DashboardComposition = async ({ crawler }: DashboardCompositionProps) => {
   return (
     <div className='grid h-full w-full pl-[56px] relative'>
-      <LeftMenu />
-      <CrawlersContent crawlData={crawler} />
+      {/* <CrawlersContent crawlData={crawler} /> */}
     </div>
   );
 };

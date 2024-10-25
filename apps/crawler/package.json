@@ -1,13 +1,16 @@
 {
   "dependencies": {
     "@hub/next-auth": "*",
+    "@hub/remotion": "*",
     "@hub/shadcn-ui": "*",
     "@hub/validations": "*",
     "@prisma/client": "^5.17.0",
     "@prisma/database": "*",
+    "@remotion/cli": "4.0.221",
     "@tanstack/react-query-devtools": "^5.59.0",
     "cheerio": "^1.0.0",
-    "puppeteer": "^23.5.0"
+    "puppeteer": "^23.5.0",
+    "remotion": "4.0.221"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
